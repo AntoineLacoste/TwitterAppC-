@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="TwitterUniversalApp.TimeLine"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TwitterUniversalApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Template10.Controls"
+    mc:Ignorable="d" Width="1000" Height="1000">
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <controls:PageHeader x:Name="pageHeaderConnection" Content="Twitter">
+            <!--  place stretched, across top  -->
+            <RelativePanel.AlignTopWithPanel>True</RelativePanel.AlignTopWithPanel>
+            <RelativePanel.AlignRightWithPanel>True</RelativePanel.AlignRightWithPanel>
+            <RelativePanel.AlignLeftWithPanel>True</RelativePanel.AlignLeftWithPanel>
+        </controls:PageHeader>
+        <Canvas Margin="0,50,0,900" Height="250">
+            <StackPanel Orientation="Vertical" Width="1000" Height="250">
+                <Image Name="ImageBandeau" Width="1000" Height="200"></Image>
+                <StackPanel Orientation="Horizontal" Width="500" Height="50">
+                    <Button Name="ButtonTweets" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+                    <Button Name="ButtonAbonnements" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+                    <Button Name="ButtonAbonnees" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+                    <Button Name="ButtonAimes" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+                    <Button Name="ButtonSuivre" VerticalAlignment="Center" Margin="130,0" Width="90" Height="50">
+                        <Image></Image>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <Image Name="ImageProfile" Height="200" Width="200" Margin="30,100"></Image>
+        </Canvas>
+        <StackPanel Width="300" Margin="30,400,700,0">
+            <TextBox Name="ProfileName"></TextBox>
+            <TextBox Name="ProfilePseudo"></TextBox>
+            <TextBox Name="ProfileBio"></TextBox>
+            <TextBox Name="ProfileLocation"></TextBox>
+            <TextBox Name="ProfileUrl"></TextBox>
+            <TextBox Name="ProfileJoinDate"></TextBox>
+            <TextBox Name="ProfileBirthday"></TextBox>
+            <TextBox Name="ProfileNumberPicture"></TextBox>
+            <Grid Margin="0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Image Name="1ProfilePicture"></Image>
+                <Image Name="2ProfilePicture" Grid.Row="0" Grid.Column="1"></Image>
+                <Image Name="3ProfilePicture" Grid.Row="0" Grid.Column="2"></Image>
+                <Image Name="4ProfilePicture" Grid.Row="1" Grid.Column="0"></Image>
+                <Image Name="5ProfilePicture" Grid.Row="1" Grid.Column="1"></Image>
+                <Image Name="6ProfilePicture" Grid.Row="1" Grid.Column="2"></Image>
+            </Grid>
+        </StackPanel>
+        <ListView></ListView>
+
+    </Grid>
+</Page>

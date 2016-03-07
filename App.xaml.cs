@@ -19,7 +19,7 @@ namespace TwitterUniversalApp
 
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
-            NavigationService.Navigate(typeof(Views.MainPage));
+            NavigationService.Navigate(typeof(Views.ConnectionPage));
             await Task.CompletedTask;
         }
     }
