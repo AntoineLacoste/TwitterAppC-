@@ -50,15 +50,44 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                <Image Name="1ProfilePicture"></Image>
-                <Image Name="2ProfilePicture" Grid.Row="0" Grid.Column="1"></Image>
-                <Image Name="3ProfilePicture" Grid.Row="0" Grid.Column="2"></Image>
-                <Image Name="4ProfilePicture" Grid.Row="1" Grid.Column="0"></Image>
-                <Image Name="5ProfilePicture" Grid.Row="1" Grid.Column="1"></Image>
-                <Image Name="6ProfilePicture" Grid.Row="1" Grid.Column="2"></Image>
+                <Image Name="ProfilePictureFirst"></Image>
+                <Image Name="ProfilePictureSecond" Grid.Row="0" Grid.Column="1"></Image>
+                <Image Name="ProfilePictureThrid" Grid.Row="0" Grid.Column="2"></Image>
+                <Image Name="ProfilePictureFourth" Grid.Row="1" Grid.Column="0"></Image>
+                <Image Name="ProfilePictureFifth" Grid.Row="1" Grid.Column="1"></Image>
+                <Image Name="ProfilePictureSixth" Grid.Row="1" Grid.Column="2"></Image>
             </Grid>
         </StackPanel>
-        <ListView></ListView>
+        <StackPanel Orientation="Vertical" Width="500" Margin="340,350,50,0">
+            <ListView Name="TimeLine" ItemsSource="" SelectedItem="" Height="700" Width="500">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Name="TimeLineProfileTweetImage"></Image>
+                                <TextBox Name="TimeLineProfileName"></TextBox>
+                                <TextBox Name="TimeLineProfilePseudo"></TextBox>
+                                <TextBox Name="TimeLinePostedSince"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <TextBox Name="TimeLineTweetText"></TextBox>
+                                <Image Name="TimeLineTweetImage"></Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Name="TimeLineReply"></Button>
+                                <Button Name="TimeLineRetweet"></Button>
+                                <Button Name="TimeLineFavorite"></Button>
+                                <Button Name="TimeLine"></Button>
+                                <ComboBox x:Name="comboBox1" SelectionChanged="ComboBox_SelectionChanged" Width="100">
+                                    <x:String>Copier le lien du Tweet</x:String>
+                                    <x:String>Intégrer le Tweet</x:String>
+                                </ComboBox>
+                            </StackPanel>
 
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>
