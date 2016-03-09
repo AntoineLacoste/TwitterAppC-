@@ -25,7 +25,6 @@
                     <Button Name="ButtonAbonnees" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
                     <Button Name="ButtonAimes" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
                     <Button Name="ButtonSuivre" VerticalAlignment="Center" Margin="130,0" Width="90" Height="50">
-                        <Image></Image>
                     </Button>
                 </StackPanel>
             </StackPanel>
@@ -59,7 +58,7 @@
             </Grid>
         </StackPanel>
         <StackPanel Orientation="Vertical" Width="500" Margin="340,350,50,0">
-            <ListView Name="TimeLine" ItemsSource="" SelectedItem="" Height="700" Width="500">
+            <ListView Name="TimeLineTweeter" ItemsSource="" SelectedItem="" Height="700" Width="500">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
@@ -78,7 +77,7 @@
                                 <Button Name="TimeLineRetweet"></Button>
                                 <Button Name="TimeLineFavorite"></Button>
                                 <Button Name="TimeLine"></Button>
-                                <ComboBox x:Name="comboBox1" SelectionChanged="ComboBox_SelectionChanged" Width="100">
+                                <ComboBox x:Name="comboBox" ItemsSource="{Binding MyItems}" SelectedItem="{Binding MySelectedItem}" Width="100">
                                     <x:String>Copier le lien du Tweet</x:String>
                                     <x:String>Intégrer le Tweet</x:String>
                                 </ComboBox>
