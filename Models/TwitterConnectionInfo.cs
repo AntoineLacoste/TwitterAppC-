@@ -23,5 +23,15 @@ namespace TwitterUniversalApp.Models
         {
             return this.appCredential;
         }
+
+        public string getConsumerKey()
+        {
+            return this.consumerKey;
+        }
+
+        public string getConsumerSecret()
+        {
+            return this.consumerSecret;
+        }
     }
 }

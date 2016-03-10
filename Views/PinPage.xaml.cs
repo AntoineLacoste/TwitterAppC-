@@ -28,9 +28,10 @@ namespace TwitterUniversalApp.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var url = CredentialsCreator.GetAuthorizationURL(TwitterConnectionInfoSingleton.getInstance().GetAppCredentials());
+            var url =
+                CredentialsCreator.GetAuthorizationURL(TwitterConnectionInfoSingleton.getInstance().GetAppCredentials());
 
-            twitterPin.Source = new Uri(url);
+            TwitterPin.Source = new Uri(url);
         }
     }
 }

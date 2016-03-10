@@ -22,13 +22,8 @@ namespace TwitterUniversalApp.ViewModels
 
         public TimeLinePageViewModel()
         {
-            this.Selecteduser = (Tweetinvi.Logic.User)User.GetAuthenticatedUser();
-            this.TimeLineTweets = new ObservableCollection<Tweet>();
-            var timeLine = Timeline.GetUserTimeline(this.Selecteduser.UserIdentifier);
-            foreach (var tweet in timeLine)
-            {
-                this.TimeLineTweets.Add((Tweetinvi.Logic.Tweet) tweet);
-            }
+            this.Selecteduser = (Tweetinvi.Logic.User) User.GetAuthenticatedUser();
+            this.TimeLineTweets = getTimeLineObservableCollection(Selecteduser);
         }
 
         private string _pinInput;
@@ -42,50 +37,66 @@ namespace TwitterUniversalApp.ViewModels
         public Tweetinvi.Logic.User Selecteduser
         {
             get { return _selecteduser; }
-            set { Set(ref _selecteduser, value); }
+            set
+            {
+                Set(ref _timeLinetweets, this.getTimeLineObservableCollection(value));
+                Set(ref _selecteduser, value);
+            }
         }
 
-        private RelayCommand authorizeCmd;
+        public ObservableCollection<Tweetinvi.Logic.Tweet> getTimeLineObservableCollection(Tweetinvi.Logic.User user)
+        {
+            var timeLine = Timeline.GetUserTimeline(user);
+            var timeLineCollection = new ObservableCollection<Tweet>();
+            timeLine = Timeline.GetUserTimeline("MisterVonline");
+            foreach (var tweet in timeLine)
+            {
+                timeLineCollection.Add((Tweetinvi.Logic.Tweet) tweet);
+            }
+
+            return timeLineCollection;
+        }
+
+        private RelayCommand _authorizeCmd;
         public RelayCommand AuthorizeCmd
         {
             get
             {
-                if (authorizeCmd == null)
-                    authorizeCmd = new RelayCommand(GetPinConnection);
-                return authorizeCmd;
+                if (_authorizeCmd == null)
+                    _authorizeCmd = new RelayCommand(GetPinConnection);
+                return _authorizeCmd;
             }
         }
 
         public void GetPinConnection()
         {
-            this.NavigationService.Navigate(typeof(Views.PinPage));
+            this.NavigationService.Navigate(typeof (Views.PinPage));
         }
         
 
         private RelayCommand _tweetsCmd;
-        public RelayCommand TweetsCMD
+        public RelayCommand TweetsCmd
         {
             get
             {
                 if (_tweetsCmd == null)
-                    _tweetsCmd = new RelayCommand(getTweets);
+                    _tweetsCmd = new RelayCommand(GetTweets);
                 return _tweetsCmd;
             }
         }
 
-        private ObservableCollection<Tweetinvi.Logic.Tweet> timeLinetweets;
+        private ObservableCollection<Tweetinvi.Logic.Tweet> _timeLinetweets;
         public ObservableCollection<Tweetinvi.Logic.Tweet> TimeLineTweets
         {
-            get { return timeLinetweets; }
-            set { Set(ref timeLinetweets, value); }
+            get { return _timeLinetweets; }
+            set { Set(ref _timeLinetweets, value); }
         }
 
-        public void getTweets()
+        public void GetTweets()
         {
             var loggedUser = User.GetAuthenticatedUser();
             var tweets = Timeline.GetHomeTimeline();
             var user = User.GetUserFromScreenName("AmandaCerny");
-            var a = 5;
         }
     }
 }

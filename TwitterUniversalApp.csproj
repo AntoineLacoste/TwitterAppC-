@@ -102,6 +102,8 @@
     <Compile Include="Models\TwitterConnectionInfo.cs" />
     <Compile Include="Models\TwitterConnectionInfoSingleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AccountToken.cs" />
+    <Compile Include="Service\Token.cs" />
     <Compile Include="ViewModels\TimeLinePageViewModel.cs" />
     <Compile Include="ViewModels\ConnectionPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />

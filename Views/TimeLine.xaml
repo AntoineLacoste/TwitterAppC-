@@ -13,54 +13,58 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Image Name="ImageBandeau" Source="{Binding Selecteduser.ProfileBannerURL}" Grid.ColumnSpan="2" />
 
-        <Image Source="{Binding Selecteduser.ProfileImageUrl400x400}" Width="250" Height="250"
+        <Image Source="{Binding Selecteduser.ProfileImageUrl400x400}" Width="100" Height="100"
                HorizontalAlignment="Left" Grid.Row="1" />
 
-        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Tweets : " />
-            <TextBlock Text="{Binding Selecteduser.StatusesCount}" />
-            <TextBlock Text="Followed : " />
-            <TextBlock Text="{Binding Selecteduser.FavouritesCount}" />
-            <TextBlock Text="Followers : " />
-            <TextBlock Text="{Binding Selecteduser.FollowersCount}" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Tweets : " />
+                <TextBlock Text="{Binding Selecteduser.StatusesCount}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Followed : " />
+                <TextBlock Text="{Binding Selecteduser.FavouritesCount}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Followers : " />
+                <TextBlock Text="{Binding Selecteduser.FollowersCount}" />
+            </StackPanel>
         </StackPanel>
         <StackPanel  Grid.Row="2" Orientation="Vertical">
             <TextBlock Name="ProfileName" Text="{Binding Selecteduser.Name}" />
             <TextBlock Name="ProfilePseudo" Text="{Binding Selecteduser.ScreenName}" />
             <TextBlock Name="ProfileBio" Text="{Binding Selecteduser.Description}" />
             <TextBlock Name="ProfileLocation" Text="{Binding Selecteduser.Location}" />
-            <TextBlock Name="ProfileUrl" Text="{Binding Selecteduser.Url}" />
-            <TextBlock Name="ProfileJoinDate" Text="{Binding Selecteduser.CreatedAt}" />
         </StackPanel>
-        <ScrollViewer Grid.Row="2" Grid.Column="1">
+        <ScrollViewer Grid.Row="2" Grid.Column="1" Height="">
             <ListView Name="TimeLineList" ItemsSource="{Binding TimeLineTweets}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Name="TimeLineProfileTweetImage" />
-                                <TextBlock Name="TimeLineProfileName" Text="{Binding CreatedBy.Name}" />
-                                <TextBlock Name="TimeLineProfilePseudo" Text="{Binding CreatedBy.ScreenName}" />
-                                <TextBlock Name="TimeLinePostedSince" Text="{Binding CreatedAt}" />
+                            <StackPanel Orientation="Horizontal" Margin="3">
+                                <Image Name="TimeLineProfileTweetImage" Source="{Binding CreatedBy.ProfileImageUrl}" Margin="2"/>
+                                <TextBlock Name="TimeLineProfileName" Text="{Binding CreatedBy.Name}" Margin="2"/>
+                                <TextBlock Name="TimeLineProfilePseudo" Text="{Binding CreatedBy.ScreenName}" Margin="2"/>
+                                <TextBlock Name="TimeLinePostedSince" Text="{Binding CreatedAt}" Margin="2"/>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Name="TimeLineTweetText" Text="{Binding Text}" />
+                                <TextBlock Name="TimeLineTweetText" Text="{Binding Text}" Margin="2"/>
                                 <Image Name="TimeLineTweetImage" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Button Name="TimeLineReply" Content="Répondre" />
-                                <Button Name="TimeLineRetweet" Content="{Binding RetweetCount}" />
-                                <Button Name="TimeLineFavorite" Content="" />
+                                <Button Name="TimeLineReply" Content="Répondre" Margin="2"/>
+                                <Button Name="TimeLineRetweet" Content="{Binding RetweetCount}" Margin="2"/>
+                                <Button Name="TimeLineFavorite" Content="{Binding FavoriteCount}" Margin="2"/>
                                 <Button Name="TimeLine" />
                                 <ComboBox x:Name="comboBox" Width="100">
                                     <x:String>Copier le lien du Tweet</x:String>

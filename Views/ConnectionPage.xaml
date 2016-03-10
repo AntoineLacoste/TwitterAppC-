@@ -11,17 +11,17 @@
 
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="1000" Width="1000">
-        <controls:PageHeader x:Name="pageHeaderConnection" Content="Connexion">
+        <controls:PageHeader x:Name="PageHeaderConnection" Content="Connexion">
             <!--  place stretched, across top  -->
             <RelativePanel.AlignTopWithPanel>True</RelativePanel.AlignTopWithPanel>
             <RelativePanel.AlignRightWithPanel>True</RelativePanel.AlignRightWithPanel>
             <RelativePanel.AlignLeftWithPanel>True</RelativePanel.AlignLeftWithPanel>
         </controls:PageHeader>
         <StackPanel Margin="100" Name="StackPanelConnection" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Name="pinUser" Text="Code PIN twitter :"></TextBlock>
-            <TextBox Name="pinValue" Height="25" Width="200" Margin="0,10,0,30" Text="{Binding PinInput, Mode=TwoWay}"></TextBox>
+            <TextBlock Name="PinUser" Text="Code PIN twitter :"></TextBlock>
+            <TextBox Name="PinValue" Height="25" Width="200" Margin="0,10,0,30" Text="{Binding PinInput, Mode=TwoWay}"></TextBox>
             <Button Command="{Binding ConnectionPinCmd}">Connexion PIN</Button>
-            <Button Name="authorizeTwitter" Command="{Binding AuthorizeCmd}">Autoristion twitter</Button>
+            <Button Name="AuthorizeTwitter" Command="{Binding GetPinCmd}">Get twitter PIN</Button>
             </StackPanel>
     </RelativePanel>
 </Page>
