@@ -14,9 +14,8 @@
     </Page.DataContext>
 
     <ScrollViewer>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-<<<<<<< HEAD
-        <StackPanel Orientation="Vertical">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <StackPanel Orientation="Vertical">
                 <Image Name="ImageBandeau" Source="{Binding Selecteduser.ProfileBannerURL}"></Image>
                 <StackPanel Orientation="Horizontal">
                     <Image Source="{Binding Selecteduser.ProfileImageUrl400x400}" Width="250" Height="250" HorizontalAlignment="Left"/>
@@ -35,24 +34,6 @@
                             <TextBlock Text="{Binding Selecteduser.FollowersCount}"/>
                         </StackPanel>
                     </StackPanel>
-=======
-        <controls:PageHeader x:Name="pageHeaderConnection" Content="Twitter">
-            <!--  place stretched, across top  -->
-            <RelativePanel.AlignTopWithPanel>True</RelativePanel.AlignTopWithPanel>
-            <RelativePanel.AlignRightWithPanel>True</RelativePanel.AlignRightWithPanel>
-            <RelativePanel.AlignLeftWithPanel>True</RelativePanel.AlignLeftWithPanel>
-        </controls:PageHeader>
-        <Canvas Margin="0,50,0,900" Height="250">
-            <StackPanel Orientation="Vertical" Width="1000" Height="250">
-                <Image Name="ImageBandeau" Width="1000" Height="200"></Image>
-                <StackPanel Orientation="Horizontal" Width="500" Height="50">
-                    <Button Name="ButtonTweets" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
-                    <Button Name="ButtonAbonnements" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
-                    <Button Name="ButtonAbonnees" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
-                    <Button Name="ButtonAimes" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
-                    <Button Name="ButtonSuivre" VerticalAlignment="Center" Margin="130,0" Width="90" Height="50">
-                    </Button>
->>>>>>> origin/master
                 </StackPanel>
             <StackPanel Orientation="Vertical">
                 <TextBlock Name="ProfileName" Text="{Binding Selecteduser.Name}"/>
@@ -82,12 +63,8 @@
                 </Grid>-->
         </StackPanel>
         <StackPanel Orientation="Vertical" Width="500" Margin="340,350,50,0">
-<<<<<<< HEAD
-            <ListView Name="TimeLineList" ItemsSource="{Binding TimeLineTweets}" SelectedItem="" Height="700" Width="500">
-=======
-            <ListView Name="TimeLineTweeter" ItemsSource="" SelectedItem="" Height="700" Width="500">
->>>>>>> origin/master
-                <ListView.ItemTemplate>
+                <ListView Name="TimeLineList" ItemsSource="{Binding TimeLineTweets}" SelectedItem="" Height="700" Width="500">
+                    <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
@@ -101,19 +78,11 @@
                                 <Image Name="TimeLineTweetImage"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-<<<<<<< HEAD
-                                <Button Name="TimeLineReply" Content="Répondre"/>
+                                 <Button Name="TimeLineReply" Content="Répondre"/>
                                 <Button Name="TimeLineRetweet" Content="{Binding RetweetCount}"/>
                                 <Button Name="TimeLineFavorite" Content=""/>
                                 <Button Name="TimeLine"/>
-                                <ComboBox x:Name="comboBox1" Width="100">
-=======
-                                <Button Name="TimeLineReply"></Button>
-                                <Button Name="TimeLineRetweet"></Button>
-                                <Button Name="TimeLineFavorite"></Button>
-                                <Button Name="TimeLine"></Button>
-                                <ComboBox x:Name="comboBox" ItemsSource="{Binding MyItems}" SelectedItem="{Binding MySelectedItem}" Width="100">
->>>>>>> origin/master
+                                 <ComboBox x:Name="comboBox" Width="100">{Binding MyItems}" SelectedItem="{Binding MySelectedItem}" Width="100">
                                     <x:String>Copier le lien du Tweet</x:String>
                                     <x:String>Intégrer le Tweet</x:String>
                                 </ComboBox>
