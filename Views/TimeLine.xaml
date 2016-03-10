@@ -7,82 +7,62 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Template10.Controls"
     mc:Ignorable="d"
-    xmlns:vm="using:TwitterUniversalApp.ViewModels">
+    xmlns:vm="using:TwitterUniversalApp.ViewModels"
+    DataContext="{Binding Source={StaticResource Locator}, Path=TimeLine}">
 
-    <Page.DataContext>
-        <vm:TimeLinePageViewModel x:Name="ViewModel" />
-    </Page.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-    <ScrollViewer>
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            <StackPanel Orientation="Vertical">
-                <Image Name="ImageBandeau" Source="{Binding Selecteduser.ProfileBannerURL}"></Image>
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="{Binding Selecteduser.ProfileImageUrl400x400}" Width="250" Height="250" HorizontalAlignment="Left"/>
-                    <StackPanel Orientation="Horizontal" >
-                        <Button />
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Tweets : "/>
-                            <TextBlock Text="{Binding Selecteduser.StatusesCount}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Followed : "/>
-                            <TextBlock Text="{Binding Selecteduser.FavouritesCount}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Followers : "/>
-                            <TextBlock Text="{Binding Selecteduser.FollowersCount}"/>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <TextBlock Name="ProfileName" Text="{Binding Selecteduser.Name}"/>
-                <TextBlock Name="ProfilePseudo" Text="{Binding Selecteduser.ScreenName}"/>
-                <TextBlock Name="ProfileBio" Text="{Binding Selecteduser.Description}"/>
-                <TextBlock Name="ProfileLocation" Text="{Binding Selecteduser.Location}"/>
-                <TextBlock Name="ProfileUrl" Text="{Binding Selecteduser.Url}"/>
-                <TextBlock Name="ProfileJoinDate" Text="{Binding Selecteduser.CreatedAt}"/>
-                <!--<TextBox Name="ProfileBirthday" Text="{Binding Loggeduser}"/>
-                <TextBox Name="ProfileNumberPicture"/>
-                <Grid Margin="0,20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition Height="100"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Name="ProfilePictureFirst"></Image>
-                    <Image Name="ProfilePictureSecond" Grid.Row="0" Grid.Column="1"/>
-                    <Image Name="ProfilePictureThrid" Grid.Row="0" Grid.Column="2"/>
-                    <Image Name="ProfilePictureFourth" Grid.Row="1" Grid.Column="0"/>
-                    <Image Name="ProfilePictureFifth" Grid.Row="1" Grid.Column="1"/>
-                    <Image Name="ProfilePictureSixth" Grid.Row="1" Grid.Column="2"/>
-                </Grid>-->
+        <Image Name="ImageBandeau" Source="{Binding Selecteduser.ProfileBannerURL}" Grid.ColumnSpan="2" />
+
+        <Image Source="{Binding Selecteduser.ProfileImageUrl400x400}" Width="250" Height="250"
+               HorizontalAlignment="Left" Grid.Row="1" />
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Tweets : " />
+            <TextBlock Text="{Binding Selecteduser.StatusesCount}" />
+            <TextBlock Text="Followed : " />
+            <TextBlock Text="{Binding Selecteduser.FavouritesCount}" />
+            <TextBlock Text="Followers : " />
+            <TextBlock Text="{Binding Selecteduser.FollowersCount}" />
         </StackPanel>
-        <StackPanel Orientation="Vertical" Width="500" Margin="340,350,50,0">
-                <ListView Name="TimeLineList" ItemsSource="{Binding TimeLineTweets}" SelectedItem="" Height="700" Width="500">
-                    <ListView.ItemTemplate>
+        <StackPanel  Grid.Row="2" Orientation="Vertical">
+            <TextBlock Name="ProfileName" Text="{Binding Selecteduser.Name}" />
+            <TextBlock Name="ProfilePseudo" Text="{Binding Selecteduser.ScreenName}" />
+            <TextBlock Name="ProfileBio" Text="{Binding Selecteduser.Description}" />
+            <TextBlock Name="ProfileLocation" Text="{Binding Selecteduser.Location}" />
+            <TextBlock Name="ProfileUrl" Text="{Binding Selecteduser.Url}" />
+            <TextBlock Name="ProfileJoinDate" Text="{Binding Selecteduser.CreatedAt}" />
+        </StackPanel>
+        <ScrollViewer Grid.Row="2" Grid.Column="1">
+            <ListView Name="TimeLineList" ItemsSource="{Binding TimeLineTweets}">
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <Image Name="TimeLineProfileTweetImage"/>
-                                <TextBlock Name="TimeLineProfileName" Text="{Binding CreatedBy.Name}"/>
-                                <TextBlock Name="TimeLineProfilePseudo" Text="{Binding CreatedBy.ScreenName}"/>
-                                <TextBlock Name="TimeLinePostedSince" Text="{Binding CreatedAt}"/>
+                                <Image Name="TimeLineProfileTweetImage" />
+                                <TextBlock Name="TimeLineProfileName" Text="{Binding CreatedBy.Name}" />
+                                <TextBlock Name="TimeLineProfilePseudo" Text="{Binding CreatedBy.ScreenName}" />
+                                <TextBlock Name="TimeLinePostedSince" Text="{Binding CreatedAt}" />
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Name="TimeLineTweetText" Text="{Binding Text}"/>
-                                <Image Name="TimeLineTweetImage"/>
+                                <TextBlock Name="TimeLineTweetText" Text="{Binding Text}" />
+                                <Image Name="TimeLineTweetImage" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                 <Button Name="TimeLineReply" Content="Répondre"/>
-                                <Button Name="TimeLineRetweet" Content="{Binding RetweetCount}"/>
-                                <Button Name="TimeLineFavorite" Content=""/>
-                                <Button Name="TimeLine"/>
-                                 <ComboBox x:Name="comboBox" Width="100">{Binding MyItems}" SelectedItem="{Binding MySelectedItem}" Width="100">
+                                <Button Name="TimeLineReply" Content="Répondre" />
+                                <Button Name="TimeLineRetweet" Content="{Binding RetweetCount}" />
+                                <Button Name="TimeLineFavorite" Content="" />
+                                <Button Name="TimeLine" />
+                                <ComboBox x:Name="comboBox" Width="100">
                                     <x:String>Copier le lien du Tweet</x:String>
                                     <x:String>Intégrer le Tweet</x:String>
                                 </ComboBox>
@@ -91,8 +71,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
-    </ScrollViewer>
 </Page>
