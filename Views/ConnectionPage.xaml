@@ -10,17 +10,29 @@
       xmlns:vm="using:TwitterUniversalApp.ViewModels" mc:Ignorable="d" Height="1000" Width="1000">
 
     <Page.DataContext>
-        <vm:MainPageViewModel x:Name="ViewModel" />
+        <vm:ConnectionPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
+<<<<<<< HEAD
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="1000" Width="1000">
+=======
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="1000" Width="1000" >
 
+>>>>>>> origin/master
         <controls:PageHeader x:Name="pageHeaderConnection" Content="Connexion">
             <!--  place stretched, across top  -->
             <RelativePanel.AlignTopWithPanel>True</RelativePanel.AlignTopWithPanel>
             <RelativePanel.AlignRightWithPanel>True</RelativePanel.AlignRightWithPanel>
             <RelativePanel.AlignLeftWithPanel>True</RelativePanel.AlignLeftWithPanel>
         </controls:PageHeader>
+<<<<<<< HEAD
+        <StackPanel Margin="100" Name="StackPanelConnection" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Name="pinUser" Text="Code PIN twitter :"></TextBlock>
+            <TextBox Name="pinValue" Height="25" Width="200" Margin="0,10,0,30" Text="{Binding PinInput, Mode=TwoWay}"></TextBox>
+            <Button Command="{Binding ConnectionPinCmd}">Connexion PIN</Button>
+            <Button Name="authorizeTwitter" Command="{Binding AuthorizeCmd}">Autoristion twitter</Button>
+        </StackPanel>
+=======
 
 
         <StackPanel VerticalAlignment="Stretch" Width="1000" Height="1000" Orientation="Horizontal">
@@ -32,7 +44,7 @@
         
 
 
+>>>>>>> origin/master
     </RelativePanel>
-
 </Page>
 
