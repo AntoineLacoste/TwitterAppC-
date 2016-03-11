@@ -20,7 +20,7 @@
         <StackPanel Margin="100" Name="StackPanelConnection" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Name="PinUser" Text="Code PIN twitter :"></TextBlock>
             <TextBox Name="PinValue" Height="25" Width="200" Margin="0,10,0,30" Text="{Binding PinInput, Mode=TwoWay}"></TextBox>
-            <Button Command="{Binding ConnectionPinCmd}">Connexion PIN</Button>
+            <Button Command="{Binding ConnectionPinCmd}">Connexion</Button>
             <Button Name="AuthorizeTwitter" Command="{Binding GetPinCmd}">Get twitter PIN</Button>
             </StackPanel>
     </RelativePanel>

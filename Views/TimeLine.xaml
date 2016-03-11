@@ -16,36 +16,43 @@
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Image Source="{Binding Selecteduser.ProfileImageUrl400x400}" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 10, 0, 0"/>
-        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="3" Grid.Column="1" Height="50" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
+            <TextBlock Margin="250,0,0,0" Name="header" Text="{Binding HeaderText}" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+            <Button Command="{Binding PostTweetCmd}" Content="Post a tweet !"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"></Button>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <Image Source="{Binding Selecteduser.ProfileImageUrl400x400}" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 10, 0, 0"/>
+            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="3" Grid.Row="1" Height="100" Width="150" HorizontalAlignment="Left">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Text="{Binding Selecteduser.Name}" />
+                    <TextBlock Text="{Binding Selecteduser.ScreenName}" />
+                    <TextBlock Text="{Binding Selecteduser.Description}" />
+                    <TextBlock Text="{Binding Selecteduser.Location}" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="3" Grid.Column="1" Grid.Row="1" Height="50" Width="250" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5">
             <StackPanel Orientation="Horizontal">
-            <StackPanel Orientation="Vertical" Margin="2">
-                <TextBlock Text="Tweets : " />
-                <TextBlock Text="{Binding Selecteduser.StatusesCount}" />
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="2">
-                <TextBlock Text="Followed : " />
-                <TextBlock Text="{Binding Selecteduser.FavouritesCount}" />
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="2">
-                <TextBlock Text="Followers : " />
-                <TextBlock Text="{Binding Selecteduser.FollowersCount}" />
-            </StackPanel>
-            </StackPanel>
-        </Border>
-        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="3" Grid.Row="1" Height="100" Width="150" HorizontalAlignment="Left">
-        <StackPanel Orientation="Vertical">
-            <TextBlock Name="ProfileName" Text="{Binding Selecteduser.Name}" />
-            <TextBlock Name="ProfilePseudo" Text="{Binding Selecteduser.ScreenName}" />
-            <TextBlock Name="ProfileBio" Text="{Binding Selecteduser.Description}" />
-            <TextBlock Name="ProfileLocation" Text="{Binding Selecteduser.Location}" />
+                <StackPanel Orientation="Vertical" >
+                    <TextBlock Text="Tweets : " />
+                    <TextBlock Text="{Binding Selecteduser.StatusesCount}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="2">
+                    <TextBlock Text="Followed : " />
+                    <TextBlock Text="{Binding Selecteduser.FavouritesCount}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="2">
+                    <TextBlock Text="Followers : " />
+                    <TextBlock Text="{Binding Selecteduser.FollowersCount}" />
+                </StackPanel>
             </StackPanel>
         </Border>
-        <ScrollViewer Grid.RowSpan="2" Grid.Column="1" Margin="0, 50, 0, 0">
+        <ScrollViewer Grid.RowSpan="2" Grid.Column="1" Margin="5, 60, 5, 5" Grid.Row="1">
             <ListView Name="TimeLineList" ItemsSource="{Binding TimeLineTweets}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -55,9 +62,12 @@
                                 <TextBlock Name="TimeLineProfileName" Text="{Binding CreatedBy.Name}" Margin="2"/>
                                 <TextBlock Name="TimeLineProfilePseudo" Text="{Binding CreatedBy.ScreenName}" Margin="2"/>
                                 <TextBlock Name="TimeLinePostedSince" Text="{Binding CreatedAt}" Margin="2"/>
+                                <Button Margin="2" HorizontalAlignment="Right" Command="{Binding Source={StaticResource Locator}, Path=TimeLine.DeleteTweetCmd}" CommandParameter="{Binding IdStr}">
+                                    <Image Source="ms-appx:///Assets/delete.png"></Image>
+                                </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Name="TimeLineTweetText" Text="{Binding Text}" Margin="2"/>
+                                <TextBlock Name="TimeLineTweetText" TextWrapping="WrapWholeWords" Text="{Binding Text}" Margin="2"/>
                                 <Image Name="TimeLineTweetImage" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -67,7 +77,7 @@
                                 <Button Name="TimeLineRetweet" Margin="2" Command="{Binding Source={StaticResource Locator}, Path=TimeLine.RetweetCmd}" CommandParameter="{Binding IdStr}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="ms-appx:///Assets/arrowsRetweet.png"></Image>
-                                        <TextBlock Text="{Binding FavoriteCount}" Margin="1, 0, 0, 0"></TextBlock>
+                                        <TextBlock Text="{Binding RetweetCount}" Margin="1, 0, 0, 0"></TextBlock>
                                     </StackPanel>
                                 </Button>
                                 <Button Name="TimeLineFavorite" Margin="2" Command="{Binding Source={StaticResource Locator}, Path=TimeLine.FavoriteCmd}" CommandParameter="{Binding IdStr}">
