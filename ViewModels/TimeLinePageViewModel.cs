@@ -23,7 +23,7 @@ namespace TwitterUniversalApp.ViewModels
         public TimeLinePageViewModel()
         {
             this.Selecteduser = (Tweetinvi.Logic.User) User.GetAuthenticatedUser();
-            this.TimeLineTweets = getTimeLineObservableCollection(Selecteduser);
+            this.TimeLineTweets = getTimeLineObservableCollection(this.Selecteduser);
         }
 
         private string _pinInput;
@@ -48,7 +48,7 @@ namespace TwitterUniversalApp.ViewModels
         {
             var timeLine = Timeline.GetUserTimeline(user);
             var timeLineCollection = new ObservableCollection<Tweet>();
-            timeLine = Timeline.GetUserTimeline("MisterVonline");
+            timeLine = Timeline.GetUserTimeline("AmandaCerny");
             foreach (var tweet in timeLine)
             {
                 timeLineCollection.Add((Tweetinvi.Logic.Tweet) tweet);
@@ -97,6 +97,54 @@ namespace TwitterUniversalApp.ViewModels
             var loggedUser = User.GetAuthenticatedUser();
             var tweets = Timeline.GetHomeTimeline();
             var user = User.GetUserFromScreenName("AmandaCerny");
+        }
+
+        private RelayCommand<string> _retweetCmd;
+        public RelayCommand<string> RetweetCmd
+        {
+            get
+            {
+                if (_retweetCmd == null)
+                    _retweetCmd = new RelayCommand<string>(Retweet);
+                return _retweetCmd;
+            }
+        }
+
+        public void Retweet(string idTweet)
+        { 
+            Tweetinvi.Tweet.PublishRetweet(Int64.Parse(idTweet));
+        }
+
+        private RelayCommand<string> _favoriteCmd;
+        public RelayCommand<string> FavoriteCmd
+        {
+            get
+            {
+                if (_favoriteCmd == null)
+                    _favoriteCmd = new RelayCommand<string>(Favorite);
+                return _favoriteCmd;
+            }
+        }
+
+        public void Favorite(string idTweet)
+        {
+            Tweetinvi.Tweet.FavoriteTweet(Int64.Parse(idTweet));
+        }
+
+        private RelayCommand _getPinCmd;
+        public RelayCommand GetCmd
+        {
+            get
+            {
+                if (_getPinCmd == null)
+                    _getPinCmd = new RelayCommand(GetConnection);
+                return _getPinCmd;
+            }
+        }
+
+        public void GetConnection()
+        {
+            this.NavigationService.Navigate(typeof(Views.PinPage));
         }
     }
 }

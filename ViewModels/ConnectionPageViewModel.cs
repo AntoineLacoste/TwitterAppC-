@@ -57,7 +57,7 @@ namespace TwitterUniversalApp.ViewModels
             if (File.Exists(ApplicationData.Current.LocalFolder.Path + "\\config.json"))
             {
                 var tokens = AccountToken.ReadTokens();
-                var userCredentials = Auth.CreateCredentials(tokens.token, tokens.tokenSecret, TwitterConnectionInfoSingleton.getInstance().getConsumerKey(), TwitterConnectionInfoSingleton.getInstance().getConsumerSecret());
+                var userCredentials = Auth.CreateCredentials(TwitterConnectionInfoSingleton.getInstance().getConsumerKey(), TwitterConnectionInfoSingleton.getInstance().getConsumerSecret(), tokens.token, tokens.tokenSecret);
                 Auth.SetCredentials(userCredentials);
                 this.NavigationService.Navigate(typeof(Views.TimeLine));
             }
