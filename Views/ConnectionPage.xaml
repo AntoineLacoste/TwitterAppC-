@@ -10,7 +10,7 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=Connection}">
 
 
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="1000" Width="1000">
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
         <controls:PageHeader x:Name="PageHeaderConnection" Content="Connexion">
             <!--  place stretched, across top  -->
             <RelativePanel.AlignTopWithPanel>True</RelativePanel.AlignTopWithPanel>

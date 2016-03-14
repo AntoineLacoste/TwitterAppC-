@@ -127,6 +127,7 @@
   <ItemGroup>
     <Content Include="Assets\arrowsRetweet.png" />
     <Content Include="Assets\delete.png" />
+    <Content Include="Assets\search.png" />
     <Content Include="Assets\shapes.png" />
     <Content Include="Help.htm" />
     <Content Include="Properties\Default.rd.xml" />
