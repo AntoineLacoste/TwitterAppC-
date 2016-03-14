@@ -22,7 +22,6 @@
             <TextBox Name="PinValue" Height="25" Width="200" Margin="0,10,0,30" Text="{Binding PinInput, Mode=TwoWay}"></TextBox>
             <Button Command="{Binding ConnectionPinCmd}">Connexion</Button>
             <Button Name="AuthorizeTwitter" Command="{Binding GetPinCmd}">Get twitter PIN</Button>
-            <ProgressRing IsActive="{Binding RingLoading}" VerticalAlignment="Center"  Width="150" Height="150"></ProgressRing>
         </StackPanel>
     </RelativePanel>
 </Page>

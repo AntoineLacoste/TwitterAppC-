@@ -25,14 +25,6 @@ namespace TwitterUniversalApp.ViewModels
             set { Set(ref _pinInput, value); }
         }
 
-        private bool _ringLoading = false;
-        public bool RingLoading
-        {
-            get { return _ringLoading; }
-            set { Set(ref _ringLoading, value); }
-        }
-
-
         private RelayCommand _getPinCmd;
         public RelayCommand GetPinCmd
         {
@@ -62,7 +54,7 @@ namespace TwitterUniversalApp.ViewModels
 
         public async void ConnectPin()
         {
-            this._ringLoading = true;
+            this.RingLoading = true;
             if (File.Exists(ApplicationData.Current.LocalFolder.Path + "\\config.json"))
             {
                 var tokens = AccountToken.ReadTokens();
