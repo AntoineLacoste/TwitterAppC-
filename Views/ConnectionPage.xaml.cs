@@ -9,7 +9,6 @@ namespace TwitterUniversalApp.Views
         {
             InitializeComponent();
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
-            
         }
     }
 }
