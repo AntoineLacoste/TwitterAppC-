@@ -6,9 +6,8 @@
       xmlns:controls="using:Template10.Controls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:vm="using:TwitterUniversalApp.ViewModels" mc:Ignorable="d" Height="1000" Width="1000"
+      xmlns:vm="using:TwitterUniversalApp.ViewModels" mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=Connection}">
-
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
         <controls:PageHeader x:Name="PageHeaderConnection" Content="Connexion">

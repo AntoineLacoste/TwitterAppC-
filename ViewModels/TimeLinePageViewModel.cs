@@ -89,6 +89,7 @@ namespace TwitterUniversalApp.ViewModels
         {
             var timeLine = Timeline.GetUserTimeline(user);
             var timeLineCollection = new ObservableCollection<Tweet>();
+            timeLine = timeLine.Where(t => t.InReplyToScreenName == null).ToList();
             //timeLine = Timeline.GetUserTimeline("AmandaCerny");
             foreach (var tweet in timeLine)
             {

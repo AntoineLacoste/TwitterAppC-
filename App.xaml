@@ -7,6 +7,11 @@
 
     <Application.Resources>
         <viewModels:ViewModelLocator x:Key="Locator" />
+        <ResourceDictionary x:Key="Dictionary">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Custom.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 
 </common:BootStrapper>

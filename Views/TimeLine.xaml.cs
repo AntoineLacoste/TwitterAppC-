@@ -25,6 +25,9 @@ namespace TwitterUniversalApp.Views
         public TimeLine()
         {
             this.InitializeComponent();
+            TimeLineList.IsSwipeEnabled = false;
+            TimeLineList.IsTapEnabled = false;
+            TimeLineList.IsDoubleTapEnabled = false;
         }
     }
 }

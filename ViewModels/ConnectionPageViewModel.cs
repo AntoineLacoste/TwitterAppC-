@@ -54,14 +54,6 @@ namespace TwitterUniversalApp.ViewModels
 
         public async void ConnectPin()
         {
-            this.RingLoading = true;
-            if (File.Exists(ApplicationData.Current.LocalFolder.Path + "\\config.json"))
-            {
-                var tokens = AccountToken.ReadTokens();
-                var userCredentials = Auth.CreateCredentials(TwitterConnectionInfoSingleton.getInstance().getConsumerKey(), TwitterConnectionInfoSingleton.getInstance().getConsumerSecret(), tokens.token, tokens.tokenSecret);
-                Auth.SetCredentials(userCredentials);
-                this.NavigationService.Navigate(typeof(Views.TimeLine));
-            }
             if (!string.IsNullOrEmpty(_pinInput))
             {
                 var userCredentials = CredentialsCreator.GetCredentialsFromVerifierCode(PinInput, TwitterConnectionInfoSingleton.getInstance().GetAppCredentials());
@@ -78,6 +70,14 @@ namespace TwitterUniversalApp.ViewModels
                     var msgDialogue = new MessageDialog("Pin code invalid", "Connection error");
                     await msgDialogue.ShowAsync();
                 }
+            }
+
+            if (File.Exists(ApplicationData.Current.LocalFolder.Path + "\\config.json"))
+            {
+                var tokens = AccountToken.ReadTokens();
+                var userCredentials = Auth.CreateCredentials(TwitterConnectionInfoSingleton.getInstance().getConsumerKey(), TwitterConnectionInfoSingleton.getInstance().getConsumerSecret(), tokens.token, tokens.tokenSecret);
+                Auth.SetCredentials(userCredentials);
+                this.NavigationService.Navigate(typeof(Views.TimeLine));
             }
 
         }

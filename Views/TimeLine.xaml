@@ -12,7 +12,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition  Width="150"/>
             <ColumnDefinition Width="6*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -20,14 +20,42 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="header.(Margin)" Value="50,0,0,0" />
+                        <!--<Setter Target="info.(Orientation)" Value="Horizontal" />
+                        <Setter Target="info.(Grid.ColumnSpan)" Value="2"></Setter>
+                        <Setter Target="borderInfo.(Margin)" Value="50, 0, 0, 0"></Setter>
+                        <Setter Target="TimeLineScroll.(Grid.Row)" Value="2" />
+                        <Setter Target="TimeLineScroll.(Grid.Column)" Value="0" />
+                        <Setter Target="TimeLineScroll.(Grid.ColumnSpan)" Value="3"/>
+                        <Setter Target="searchPanel.(Grid.Row)" Value="1"></Setter>
+                        <Setter Target="searchPanel.(VerticalAlignment)" Value="Bottom"></Setter>-->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="620" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
             <TextBlock Margin="250,0,0,0" Name="header" Text="{Binding HeaderText}" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
             <Button Command="{Binding PostTweetCmd}" Content="Post a tweet !"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"></Button>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="5">
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="5" Name="info">
             <Image Source="{Binding Selecteduser.ProfileImageUrl400x400}" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 10, 0, 0"/>
-            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="3" Height="100" Width="140" HorizontalAlignment="Left">
+            <Border Name="borderInfo"  Margin="0, 30, 0, 0" BorderBrush="Black" BorderThickness="2" CornerRadius="3" Height="100" Width="140" HorizontalAlignment="Left">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="{Binding Selecteduser.Name}"/>
                     <TextBlock Text="{Binding Selecteduser.ScreenName}"/>
@@ -36,7 +64,7 @@
                 </StackPanel>
             </Border>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="2">
+        <StackPanel Orientation="Vertical" Grid.Row="2" Margin="3" Name="searchPanel">
             <TextBlock Text="Enter a screen name : "></TextBlock>
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding UserNameInput, Mode=TwoWay}" Width="100" MaxWidth="100"></TextBox>
@@ -52,7 +80,7 @@
                 </Button>
             </StackPanel>
         </StackPanel>
-        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="3" Grid.Column="1" Grid.Row="1" Height="50" Width="350" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5">
+        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="3" Grid.Column="1" Grid.Row="1" Height="50" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Margin="2">
                     <TextBlock Text="Tweets : " />
@@ -68,9 +96,12 @@
                 </StackPanel>
             </StackPanel>
         </Border>
-        <ScrollViewer Grid.RowSpan="2" Grid.Column="1" Margin="5, 60, 5, 5" Grid.Row="1">
-            <ListView Name="TimeLineList" ItemsSource="{Binding TimeLineTweets}">
-                <ListView.ItemTemplate>
+        <ScrollViewer Name="TimeLineScroll" Grid.RowSpan="2" Grid.Column="1" Margin="5, 60, 5, 5" Grid.Row="1" HorizontalContentAlignment="Stretch">
+            <ListView Name="TimeLineList" ItemsSource="{Binding TimeLineTweets}" IsTapEnabled="False">
+                <ListView.SelectionMode>
+                    <ListViewSelectionMode>None</ListViewSelectionMode>
+                </ListView.SelectionMode>
+                <ListView.ItemTemplate >
                     <DataTemplate>
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal" Margin="3">
@@ -86,6 +117,18 @@
                             <StackPanel Orientation="Vertical">
                                 <TextBlock Name="TimeLineTweetText" TextWrapping="WrapWholeWords" Text="{Binding Text}" Margin="2"/>
                                 <Image Name="TimeLineTweetImage" />
+                                <StackPanel Orientation="Horizontal">
+                                    <ListView ItemsSource="{Binding Media}" Name="MediaList">
+                                        <ListView.SelectionMode>
+                                            <ListViewSelectionMode>None</ListViewSelectionMode>
+                                        </ListView.SelectionMode>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Image Source="{Binding MediaURL}" MaxWidth="150" MaxHeight="150"></Image>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Button Name="TimeLineReply" Margin="2" Command="{Binding Source={StaticResource Locator}, Path=TimeLine.AnswerTweetCmd}" CommandParameter="{Binding IdStr}">
