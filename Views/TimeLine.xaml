@@ -43,19 +43,18 @@
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="620" />
                     </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                    </VisualState.Setters>
+                    <VisualState.Setters/>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
         <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
-            <TextBlock Margin="250,0,0,0" Name="header" Text="{Binding HeaderText}" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-            <Button Command="{Binding PostTweetCmd}" Content="Post a tweet !"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"></Button>
+            <TextBlock Margin="250,0,0,0" Name="Header" Text="{Binding HeaderText}" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+            <Button Command="{Binding PostTweetCmd}" Content="Post a tweet !"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="5" Name="info">
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="5" Name="Info">
             <Image Source="{Binding Selecteduser.ProfileImageUrl400x400}" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0, 10, 0, 0"/>
-            <Border Name="borderInfo"  Margin="0, 30, 0, 0" BorderBrush="Black" BorderThickness="2" CornerRadius="3" Height="100" Width="140" HorizontalAlignment="Left">
+            <Border Name="BorderInfo"  Margin="0, 30, 0, 0" BorderBrush="Black" BorderThickness="2" CornerRadius="3" Height="100" Width="140" HorizontalAlignment="Left">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="{Binding Selecteduser.Name}"/>
                     <TextBlock Text="{Binding Selecteduser.ScreenName}"/>
@@ -65,18 +64,18 @@
             </Border>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2" Margin="3" Name="searchPanel">
-            <TextBlock Text="Enter a screen name : "></TextBlock>
+            <TextBlock Text="Enter a screen name : "/>
             <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding UserNameInput, Mode=TwoWay}" Width="100" MaxWidth="100"></TextBox>
+                <TextBox Text="{Binding UserNameInput, Mode=TwoWay}" Width="100" MaxWidth="100"/>
                 <Button Command="{Binding SwitchUserTimeLine}">
-                    <Image Source="ms-appx:///Assets/search.png"></Image>
+                    <Image Source="ms-appx:///Assets/search.png"/>
                 </Button>
             </StackPanel>
-            <TextBlock Text="Enter a key word : "></TextBlock>
+            <TextBlock Text="Enter a key word : "/>
             <StackPanel Orientation="Horizontal">
-                <TextBox Text="{Binding SearchInput, Mode=TwoWay}" Width="100" MaxWidth="100"></TextBox>
+                <TextBox Text="{Binding SearchInput, Mode=TwoWay}" Width="100" MaxWidth="100"/>
                 <Button Command="{Binding SearchCmd}">
-                    <Image Source="ms-appx:///Assets/search.png"></Image>
+                    <Image Source="ms-appx:///Assets/search.png"/>
                 </Button>
             </StackPanel>
         </StackPanel>
@@ -84,7 +83,7 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Margin="2">
                     <TextBlock Text="Tweets : " />
-                    <TextBlock Text="{Binding Selecteduser.StatusesCount}" />
+                    <TextBlock Text="{Binding Selecteduser.StatusesCount}" Foreground="{StaticResource ListViewItemSelectedBackgroundThemeBrush}"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="2">
                     <TextBlock Text="Followed : " />
@@ -95,23 +94,23 @@
                     <TextBlock Text="{Binding Selecteduser.FollowersCount}" />
                 </StackPanel>
             </StackPanel>
-        </Border>
+        </Border> 
         <ScrollViewer Name="TimeLineScroll" Grid.RowSpan="2" Grid.Column="1" Margin="5, 60, 5, 5" Grid.Row="1" HorizontalContentAlignment="Stretch">
-            <ListView Name="TimeLineList" ItemsSource="{Binding TimeLineTweets}" IsTapEnabled="False">
+            <ListView Name="TimeLineList" ItemsSource="{Binding TimeLineTweets}" IsTapEnabled="False" IsItemClickEnabled="False">
                 <ListView.SelectionMode>
                     <ListViewSelectionMode>None</ListViewSelectionMode>
                 </ListView.SelectionMode>
-                <ListView.ItemTemplate >
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical" IsTapEnabled="False">
                             <StackPanel Orientation="Horizontal" Margin="3">
                                 <Image Name="TimeLineProfileTweetImage" Source="{Binding CreatedBy.ProfileImageUrl}" Margin="2"/>
                                 <TextBlock Name="TimeLineProfileName" Text="{Binding CreatedBy.Name}" Margin="2" FontWeight="Bold"/>
-                                <TextBlock Text="@"></TextBlock>
+                                <TextBlock Text="@"/>
                                 <TextBlock Name="TimeLineProfilePseudo" Text="{Binding CreatedBy.ScreenName}" Margin="2" FontSize="11"/>
                                 <TextBlock Name="TimeLinePostedSince" Text="{Binding CreatedAt}" Margin="2"/>
                                 <Button Margin="2" HorizontalAlignment="Right" Command="{Binding Source={StaticResource Locator}, Path=TimeLine.DeleteTweetCmd}" CommandParameter="{Binding IdStr}">
-                                    <Image Source="ms-appx:///Assets/delete.png"></Image>
+                                    <Image Source="ms-appx:///Assets/delete.png"/>
                                 </Button>
                             </StackPanel>
                             <StackPanel Orientation="Vertical">
@@ -124,7 +123,9 @@
                                         </ListView.SelectionMode>
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <Image Source="{Binding MediaURL}" MaxWidth="150" MaxHeight="150"></Image>
+                                                <StackPanel>
+                                                    <Image Source="{Binding MediaURL}" MaxWidth="150" MaxHeight="150"/>
+                                                </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
@@ -132,18 +133,18 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Button Name="TimeLineReply" Margin="2" Command="{Binding Source={StaticResource Locator}, Path=TimeLine.AnswerTweetCmd}" CommandParameter="{Binding IdStr}">
-                                    <Image Source="ms-appx:///Assets/arrows.png"></Image>
+                                    <Image Source="ms-appx:///Assets/arrows.png"/>
                                 </Button>
                                 <Button Name="TimeLineRetweet" Margin="2" Command="{Binding Source={StaticResource Locator}, Path=TimeLine.RetweetCmd}" CommandParameter="{Binding IdStr}">
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="ms-appx:///Assets/arrowsRetweet.png"></Image>
-                                        <TextBlock Text="{Binding RetweetCount}" Margin="1, 0, 0, 0"></TextBlock>
+                                        <Image Source="ms-appx:///Assets/arrowsRetweet.png"/>
+                                        <TextBlock Text="{Binding RetweetCount}" Margin="1, 0, 0, 0"/>
                                     </StackPanel>
                                 </Button>
                                 <Button Name="TimeLineFavorite" Margin="2" Command="{Binding Source={StaticResource Locator}, Path=TimeLine.FavoriteCmd}" CommandParameter="{Binding IdStr}">
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="ms-appx:///Assets/shapes.png"></Image>
-                                        <TextBlock Name="favoriteTweet" Text="{Binding FavoriteCount}" Margin="1, 0, 0, 0"></TextBlock>
+                                        <Image Source="ms-appx:///Assets/shapes.png"/>
+                                        <TextBlock Name="favoriteTweet" Text="{Binding FavoriteCount}" Margin="1, 0, 0, 0"/>
                                     </StackPanel>
                                 </Button>
                             </StackPanel>

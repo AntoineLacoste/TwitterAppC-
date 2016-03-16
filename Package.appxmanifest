@@ -1,10 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity
-    Name="0ecd3c66-ea32-4eb4-90a1-13f39322f65b"
-    Publisher = "CN=Julien"
-    Version = "1.0.0.0" /> 
-  <mp:PhoneIdentity PhoneProductId="0ecd3c66-ea32-4eb4-90a1-13f39322f65b" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <Identity Name="0ecd3c66-ea32-4eb4-90a1-13f39322f65b" Publisher="CN=Julien" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="0ecd3c66-ea32-4eb4-90a1-13f39322f65b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>TwitterUniversalApp</DisplayName>
     <PublisherDisplayName>Julien</PublisherDisplayName>

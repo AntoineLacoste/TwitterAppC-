@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TwitterUniversalApp.ViewModels;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, voir la page http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,6 +29,15 @@ namespace TwitterUniversalApp.Views
             TimeLineList.IsSwipeEnabled = false;
             TimeLineList.IsTapEnabled = false;
             TimeLineList.IsDoubleTapEnabled = false;
+            TimeLineScroll.ViewChanged += scrolled;
+
+        }
+
+        private void scrolled(object sender, ScrollViewerViewChangedEventArgs scrollViewerViewChangedEventArgs)
+        {
+            var data = (TimeLinePageViewModel)DataContext;
+            var scrollView = (ScrollViewer)sender;
+            data.scrolled(scrollView);
         }
     }
 }

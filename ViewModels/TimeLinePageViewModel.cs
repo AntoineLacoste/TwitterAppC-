@@ -447,6 +447,28 @@ namespace TwitterUniversalApp.ViewModels
                     break;
             }
         }
+
+        public void scrolled(ScrollViewer scrollViewer)
+        {
+            if (scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight - 100)
+            {
+                this.addTimeLineTweets();
+            }
+        }
+
+        private void addTimeLineTweets()
+        {
+            var userTimelineParameters = new UserTimelineParameters();
+            userTimelineParameters.MaxId = this.TimeLineTweets.Last().Id;
+            userTimelineParameters.MaximumNumberOfTweetsToRetrieve = 15;
+            var tweets = Timeline.GetUserTimeline(this.Selecteduser.Id, userTimelineParameters);
+            var tweetsList = tweets.ToList();
+            tweetsList.RemoveAt(0);
+            foreach (var tweet in tweetsList)
+            {
+                this.TimeLineTweets.Add((Tweet) tweet);
+            }
+        }
     }
 }
 
