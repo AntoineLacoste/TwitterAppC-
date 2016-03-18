@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tweetinvi.Core.Credentials;
+﻿using Tweetinvi.Core.Credentials;
 
 namespace TwitterUniversalApp.Models
 {
