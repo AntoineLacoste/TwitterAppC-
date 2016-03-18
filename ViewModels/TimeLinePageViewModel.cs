@@ -88,7 +88,7 @@ namespace TwitterUniversalApp.ViewModels
         public ObservableCollection<Tweetinvi.Logic.Tweet> getTimeLineObservableCollection(Tweetinvi.Logic.User user)
         {
             IEnumerable<Tweetinvi.Core.Interfaces.ITweet> timeLine;
-            if (user.ScreenName == this.Selecteduser.ScreenName)
+            if (User.GetAuthenticatedUser().ScreenName == this.Selecteduser.ScreenName)
             {
                 timeLine = Timeline.GetHomeTimeline();
             }
