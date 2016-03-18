@@ -87,7 +87,15 @@ namespace TwitterUniversalApp.ViewModels
         }
         public ObservableCollection<Tweetinvi.Logic.Tweet> getTimeLineObservableCollection(Tweetinvi.Logic.User user)
         {
-            var timeLine = Timeline.GetUserTimeline(user);
+            IEnumerable<Tweetinvi.Core.Interfaces.ITweet> timeLine;
+            if (user.ScreenName == this.Selecteduser.ScreenName)
+            {
+                timeLine = Timeline.GetHomeTimeline();
+            }
+            else
+            {
+                timeLine = Timeline.GetUserTimeline(user);
+            }
             var timeLineCollection = new ObservableCollection<Tweet>();
             timeLine = timeLine.Where(t => t.InReplyToScreenName == null).ToList();
             //timeLine = Timeline.GetUserTimeline("AmandaCerny");
@@ -448,20 +456,35 @@ namespace TwitterUniversalApp.ViewModels
             }
         }
 
-        public void scrolled(ScrollViewer scrollViewer)
+        public void Scrolled(ScrollViewer scrollViewer)
         {
             if (scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight - 100)
             {
-                this.addTimeLineTweets();
+                this.AddTimeLineTweets();
             }
         }
 
-        private void addTimeLineTweets()
+        private void AddTimeLineTweets()
         {
-            var userTimelineParameters = new UserTimelineParameters();
-            userTimelineParameters.MaxId = this.TimeLineTweets.Last().Id;
-            userTimelineParameters.MaximumNumberOfTweetsToRetrieve = 15;
-            var tweets = Timeline.GetUserTimeline(this.Selecteduser.Id, userTimelineParameters);
+            IEnumerable<Tweetinvi.Core.Interfaces.ITweet> tweets;
+            if (User.GetAuthenticatedUser().ScreenName == this.Selecteduser.ScreenName)
+            {
+                var homeTimelineParameter = new HomeTimelineParameters
+                {
+                    MaxId = this.TimeLineTweets.Last().Id,
+                    MaximumNumberOfTweetsToRetrieve = 15
+                };
+                tweets = Timeline.GetHomeTimeline(homeTimelineParameter);
+            }
+            else
+            {
+                var userTimelineParameters = new UserTimelineParameters
+                {
+                    MaxId = this.TimeLineTweets.Last().Id,
+                    MaximumNumberOfTweetsToRetrieve = 15
+                };
+                tweets = Timeline.GetUserTimeline(this.Selecteduser.Id, userTimelineParameters);
+            }
             var tweetsList = tweets.ToList();
             tweetsList.RemoveAt(0);
             foreach (var tweet in tweetsList)

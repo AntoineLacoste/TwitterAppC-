@@ -28,15 +28,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="header.(Margin)" Value="50,0,0,0" />
-                        <!--<Setter Target="info.(Orientation)" Value="Horizontal" />
-                        <Setter Target="info.(Grid.ColumnSpan)" Value="2"></Setter>
-                        <Setter Target="borderInfo.(Margin)" Value="50, 0, 0, 0"></Setter>
-                        <Setter Target="TimeLineScroll.(Grid.Row)" Value="2" />
-                        <Setter Target="TimeLineScroll.(Grid.Column)" Value="0" />
-                        <Setter Target="TimeLineScroll.(Grid.ColumnSpan)" Value="3"/>
-                        <Setter Target="searchPanel.(Grid.Row)" Value="1"></Setter>
-                        <Setter Target="searchPanel.(VerticalAlignment)" Value="Bottom"></Setter>-->
+                        <Setter Target="Header.(Margin)" Value="50,0,0,0" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -83,7 +75,7 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical" Margin="2">
                     <TextBlock Text="Tweets : " />
-                    <TextBlock Text="{Binding Selecteduser.StatusesCount}" Foreground="{StaticResource ListViewItemSelectedBackgroundThemeBrush}"/>
+                    <TextBlock Text="{Binding Selecteduser.StatusesCount}"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="2">
                     <TextBlock Text="Followed : " />

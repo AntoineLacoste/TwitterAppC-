@@ -37,7 +37,7 @@ namespace TwitterUniversalApp.Views
         {
             var data = (TimeLinePageViewModel)DataContext;
             var scrollView = (ScrollViewer)sender;
-            data.scrolled(scrollView);
+            data.Scrolled(scrollView);
         }
     }
 }

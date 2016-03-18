@@ -70,6 +70,8 @@ namespace TwitterUniversalApp.ViewModels
                     var msgDialogue = new MessageDialog("Pin code invalid", "Connection error");
                     await msgDialogue.ShowAsync();
                 }
+
+                return;
             }
 
             if (File.Exists(ApplicationData.Current.LocalFolder.Path + "\\config.json"))

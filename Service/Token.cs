@@ -8,8 +8,8 @@ namespace TwitterUniversalApp.Service
 {
     class Token
     {
-        public string token;
-        public string tokenSecret;
+        public readonly string token;
+        public readonly string tokenSecret;
 
         public Token(string token, string tokenSecret)
         {
