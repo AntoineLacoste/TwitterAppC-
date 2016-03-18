@@ -93,21 +93,6 @@ namespace TwitterUniversalApp.ViewModels
             return timeLineCollection;
         }
 
-        private RelayCommand _authorizeCmd;
-        public RelayCommand AuthorizeCmd
-        {
-            get
-            {
-                if (_authorizeCmd == null)
-                    _authorizeCmd = new RelayCommand(GetPinConnection);
-                return _authorizeCmd;
-            }
-        }
-        public void GetPinConnection()
-        {
-            this.NavigationService.Navigate(typeof(Views.PinPage));
-        }
-
         private RelayCommand _searchCmd;
         public RelayCommand SearchCmd
         {

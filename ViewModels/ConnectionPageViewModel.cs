@@ -1,14 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls;
 using Template10.Mvvm;
-using Template10.Services.NavigationService;
-using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Command;
 using Tweetinvi;
 using TwitterUniversalApp.Models;
